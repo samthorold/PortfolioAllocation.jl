@@ -34,6 +34,20 @@ function minimum_variance(σ, C)
     return (Σ_inv * i) / (transpose(i) * Σ_inv * i)
 end
 
-export minimum_variance
+function cov_matrix(σ, C)
+    S = diagm(σ)
+    return S * C * S
+end
+
+function portfolio_variance(w, σ, C)
+    Σ = cov_matrix(σ, C)
+    return transpose(w) * Σ * w
+end
+
+function diversification_ratio(w, σ, C)
+    (transpose(w) * σ) / sqrt(portfolio_variance(w, σ, C))
+end
+
+export diversification_ratio, minimum_variance, portfolio_variance
 
 end

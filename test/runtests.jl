@@ -23,5 +23,21 @@ using PortfolioAllocation
         -.0124
         -.0844
     ]
-    @test minimum_variance(σ, C) ≈ expected atol=4
+    @test minimum_variance(σ, C) ≈ expected atol=.0001
 end
+
+@testset "Diversification ratio" begin
+
+    σ = [.2, .2, .2, .2]
+    C = [
+         1.00  0.80  0.00  0.00
+         0.80  1.00  0.00  0.00
+         0.00  0.00  1.00 -0.50
+         0.00  0.00 -0.50  1.00
+    ]
+    
+    w = [.25, .25, .25, .25]
+    expected = 1.87
+    @test diversification_ratio(w, σ, C) ≈ expected atol=.01
+end
+
