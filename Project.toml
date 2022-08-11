@@ -3,6 +3,9 @@ uuid = "c318330a-411a-4c96-b1bf-4cc0219d852c"
 authors = ["Sam Thorold <sam.thorold@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
 [compat]
 julia = "1.7"
 
