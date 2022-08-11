@@ -1,6 +1,8 @@
-using LinearAlgebra
-using Test
-using PortfolioAllocation
+using Documenter, LinearAlgebra, PortfolioAllocation, Test
+
+DocMeta.setdocmeta!(PortfolioAllocation, :DocTestSetup, :(using PortfolioAllocation); recursive=true)
+
+doctest(PortfolioAllocation)
 
 @testset "Minimum variance" begin
 

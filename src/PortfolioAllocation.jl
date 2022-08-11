@@ -13,16 +13,22 @@ The asset weights giving the minimum variance portfolio.
 
 # Examples
 ```jldoctest
-julia> using LinearAlgebra
-julia> σ = [.04, .06, .08, 1.];
-julia> C = fill(.2, length(σ), length(σ));
-julia> C[diagind(C)] .= 1.
+julia> σ = [.04, .06, .08, .1];
+
+julia> C = [
+       1.0 0.2 0.2 0.2
+       0.2 1.0 0.2 0.2
+       0.2 0.2 1.0 0.2
+       0.2 0.2 0.2 1.0
+       ];
+
 julia> minimum_variance(σ, C)
 4-element Vector{Float64}:
  0.6587633032466659
  0.22362926040684358
  0.08689209214603259
  0.030715344200458013
+
 ```
 
 """
