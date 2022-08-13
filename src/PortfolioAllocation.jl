@@ -76,17 +76,17 @@ function most_diversified(σ, C)
 end
 
 function cov_matrix(σ, C)
-    return diagm(σ) * C * diagm(σ)
+    S = diagm(σ)
+    return S * C * S
 end
 
-function portfolio_variance(w, σ, C)
-    return transpose(w) * cov_matrix(σ, C) * w
-end
+portfolio_variance(w, σ, C) = transpose(w) * cov_matrix(σ, C) * w
 
-function diversification_ratio(w, σ, C)
-    return (transpose(w) * σ) / sqrt(portfolio_variance(w, σ, C))
-end
+diversification_ratio(w, σ, C) = (transpose(w) * σ) / sqrt(portfolio_variance(w, σ, C))
 
-export cov_matrix, diversification_ratio, minimum_variance, most_diversified, portfolio_variance
+export diversification_ratio
+export minimum_variance
+export most_diversified
+export portfolio_variance
 
 end
