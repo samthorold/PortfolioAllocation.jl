@@ -39,7 +39,7 @@ function minimum_variance(σ, C)
     Σ = S * C * S
     Σ_inv = inv(Σ)
     i = ones(length(σ))
-    return (Σ_inv * i) / (transpose(i) * Σ_inv * i)
+    return (Σ_inv * i) / (i' * Σ_inv * i)
 end
 
 function allocate(objective, σ, C; long_only = true)
@@ -98,9 +98,9 @@ function cov_matrix(σ, C)
     return S * C * S
 end
 
-portfolio_variance(w, σ, C) = transpose(w) * cov_matrix(σ, C) * w
+portfolio_variance(w, σ, C) = w' * cov_matrix(σ, C) * w
 
-diversification_ratio(w, σ, C) = (transpose(w) * σ) / sqrt(portfolio_variance(w, σ, C))
+diversification_ratio(w, σ, C) = (w' * σ) / sqrt(portfolio_variance(w, σ, C))
 
 export allocate
 export diversification_ratio
