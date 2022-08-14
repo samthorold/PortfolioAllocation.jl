@@ -22,12 +22,12 @@ julia> C = [
        0.2 0.2 0.2 1.0
        ];
 
-julia> minimum_variance(σ, C)
+julia> round.(minimum_variance(σ, C), digits=4)
 4-element Vector{Float64}:
- 0.6587633032466659
- 0.22362926040684358
- 0.08689209214603259
- 0.030715344200458013
+ 0.6588
+ 0.2236
+ 0.0869
+ 0.0307
 
 ```
 
