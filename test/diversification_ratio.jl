@@ -1,4 +1,4 @@
-using PortfolioAllocation
+import PortfolioAllocation.Objectives: diversification_ratio
 using Test
 
 @testset "Diversification ratio" begin

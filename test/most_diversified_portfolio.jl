@@ -1,4 +1,4 @@
-using PortfolioAllocation
+import PortfolioAllocation.Analytic: most_diversified
 using Test
 
 @testset "Most diversified portfolio" begin

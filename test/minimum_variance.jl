@@ -1,5 +1,5 @@
 using LinearAlgebra
-using PortfolioAllocation
+import PortfolioAllocation.Analytic: minimum_variance
 using Test
 
 @testset "Minimum variance" begin
