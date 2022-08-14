@@ -1,7 +1,6 @@
 module PortfolioAllocation
 
 export Allocate
-export allocate  # allocate is "the point"
 export Analytic
 export Objectives
 # export Utils
