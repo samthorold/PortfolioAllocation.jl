@@ -1,6 +1,8 @@
 module PortfolioAllocation
 
+using JuMP
 using LinearAlgebra
+import Ipopt
 
 """
     minimum_variance(σ, C)
@@ -39,6 +41,22 @@ function minimum_variance(σ, C)
     i = ones(length(σ))
     return (Σ_inv * i) / (transpose(i) * Σ_inv * i)
 end
+
+function allocate(objective, σ, C; long_only = true)
+    if long_only
+        w_min = 0
+    else
+        w_min = -1000000
+    end
+    m = Model(Ipopt.Optimizer)
+    set_silent(m)
+    @variable(m, w[1:length(σ)] >= w_min)
+    @objective(m, Min, objective(w, σ, C))
+    @constraint(m, sum(w) == 1)
+    optimize!(m)
+    return value.(w)
+end
+
 
 """
     most_diversified(σ, C)
@@ -84,6 +102,7 @@ portfolio_variance(w, σ, C) = transpose(w) * cov_matrix(σ, C) * w
 
 diversification_ratio(w, σ, C) = (transpose(w) * σ) / sqrt(portfolio_variance(w, σ, C))
 
+export allocate
 export diversification_ratio
 export minimum_variance
 export most_diversified
